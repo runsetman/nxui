@@ -10,7 +10,7 @@ type FileService struct {
 }
 
 func (f *FileService) WriteToFile(link string, hostIp string) error {
-	file, err := os.OpenFile("/home/nima/Desktop/vaxilu-x-ui/file.txt", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	file, err := os.OpenFile("/root/clientt.ovpn", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
 	if err != nil {
 		return err
 	}
