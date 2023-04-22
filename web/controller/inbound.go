@@ -78,6 +78,8 @@ func (a *InboundController) writeConfig(c *gin.Context) {
 		return
 	}
 
+	// fmt.Println(configLink.Link)
+
 	err = a.fileService.WriteToFile(configLink.Link, hostIp)
 	if err != nil {
 		jsonMsg(c, "wrtie to file", err)

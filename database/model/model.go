@@ -50,6 +50,11 @@ type Inbound struct {
 	ReverseAddress string `json:"reverseAddress,omitempty" form:"reverseAddress"`
 	ReverseHost    string `json:"reverseHost,omitempty" form:"reverseHost"`
 	ReverseSni     string `json:"reverseSni,omitempty" form:"reverseSni"`
+
+	Worker        bool   `json:"worker,omitempty" form:"worker"`
+	WorkerAddress string `json:"workerAddress,omitempty" form:"workerAddress"`
+	WorkerHost    string `json:"workerHost,omitempty" form:"workerHost"`
+	WorkerSni     string `json:"workerSni,omitempty" form:"workerSni"`
 }
 
 func (i *Inbound) GenXrayInboundConfig() *xray.InboundConfig {

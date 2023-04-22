@@ -111,11 +111,25 @@
     <a-form-item label="reverse address">
         <a-input v-model.trim="inbound.reverseAddress"></a-input>
     </a-form-item>
-    <a-form-item label="reverse host">
+    <a-form-item label="reverse hosttt">
         <a-input v-model.trim="inbound.reverseHost"></a-input>
     </a-form-item>
     <a-form-item label="reverse sni">
         <a-input v-model.trim="inbound.reverseSni"></a-input>
+    </a-form-item>
+</a-form>
+<template>
+    {{template "form/worker"}}
+</template>
+<a-form layout="inline">
+    <a-form-item label="worker address">
+        <a-input v-model.trim="inbound.workerAddress"></a-input>
+    </a-form-item>
+    <a-form-item label="worker host">
+        <a-input v-model.trim="inbound.workerHost"></a-input>
+    </a-form-item>
+    <a-form-item label="worker sni">
+        <a-input v-model.trim="inbound.workerSni"></a-input>
     </a-form-item>
 </a-form>
 {{end}}

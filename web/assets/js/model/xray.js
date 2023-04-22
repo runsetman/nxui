@@ -611,7 +611,11 @@ class Inbound extends XrayCommonClass {
                 reverseHttps=false,
                 reverseAddress='',
                 reverseHost='',
-                reverseSni=''
+                reverseSni='',
+                worker=false,
+                workerAddress='',
+                workerHost='',
+                workerSni=''
                 ) {
         super();
         this.port = port;
@@ -625,6 +629,10 @@ class Inbound extends XrayCommonClass {
         this.reverseAddress = reverseAddress
         this.reverseHost = reverseHost
         this.reverseSni = reverseSni
+        this.worker = worker
+        this.workerAddress = workerAddress
+        this.workerHost = workerHost
+        this.workerSni = workerSni
     }
 
     get protocol() {
@@ -1026,6 +1034,10 @@ class Inbound extends XrayCommonClass {
             address = this.reverseAddress
         }
 
+        if(this.worker) {
+            address = this.workerAddress
+        }
+
         const link = `vless://${uuid}@${address}:443`;
         const url = new URL(link);
 
@@ -1038,6 +1050,15 @@ class Inbound extends XrayCommonClass {
             url.searchParams.set("type", "ws")
             url.searchParams.set("sni", this.reverseSni)
             url.searchParams.set("path",`/ports/${port}`)
+        } else if(this.worker) {
+            url.searchParams.set("path",params.get('path'))
+            url.searchParams.set("security", "tls")
+            url.searchParams.set("encryption", "none")
+            url.searchParams.set("alpn", "h2,http/1.1")
+            url.searchParams.set("host", this.workerHost)
+            url.searchParams.set("fp", "chrome")
+            url.searchParams.set("type", "ws")
+            url.searchParams.set("sni", this.workerSni)
         } else {
             for (const [key, value] of params) {
                 url.searchParams.set(key, value)
@@ -1086,7 +1107,11 @@ class Inbound extends XrayCommonClass {
             json.reverseHttps,
             json.reverseAddress,
             json.reverseHost,
-            json.reverseSni
+            json.reverseSni,
+            json.worker,
+            json.workerAddress,
+            json.workerHost,
+            json.workerSni
         )
     }
 
@@ -1106,7 +1131,11 @@ class Inbound extends XrayCommonClass {
             reverseHttps: this.reverseHttps,
             reverseAddress: this.reverseAddress,
             reverseHost: this.reverseHost,
-            reverseSni: this.reverseSni
+            reverseSni: this.reverseSni,
+            worker: this.worker,
+            workerAddress: this.workerAddress,
+            workerHost: this.workerHost,
+            workerSni: this.workerSni
         };
     }
 }
