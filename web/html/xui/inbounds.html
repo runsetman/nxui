@@ -284,7 +284,13 @@
                     reverseHttps: inbound.reverseHttps,
                     reverseAddress: inbound.reverseAddress,
                     reverseHost: inbound.reverseHost,
-                    reverseSni: inbound.reverseSni
+                    reverseSni: inbound.reverseSni,
+
+                    worker: inbound.worker,
+                    workerAddress: inbound.workerAddress,
+                    workerHost: inbound.workerHost,
+                    workerSni: inbound.workerSni
+
                 };
 
 
@@ -305,6 +311,17 @@
                     settings: inbound.settings.toString(),
                     streamSettings: inbound.stream.toString(),
                     sniffing: inbound.canSniffing() ? inbound.sniffing.toString() : '{}',
+
+                    reverseHttps: inbound.reverseHttps,
+                    reverseAddress: inbound.reverseAddress,
+                    reverseHost: inbound.reverseHost,
+                    reverseSni: inbound.reverseSni,
+
+                    worker: inbound.worker,
+                    workerAddress: inbound.workerAddress,
+                    workerHost: inbound.workerHost,
+                    workerSni: inbound.workerSni
+                    
                 };
                 await this.submit(`/xui/inbound/update/${dbInbound.id}`, data, inModal);
             },

@@ -133,6 +133,14 @@ func (s *InboundService) UpdateInbound(inbound *model.Inbound) error {
 	oldInbound.StreamSettings = inbound.StreamSettings
 	oldInbound.Sniffing = inbound.Sniffing
 	oldInbound.Tag = fmt.Sprintf("inbound-%v", inbound.Port)
+	oldInbound.ReverseHttps = inbound.ReverseHttps
+	oldInbound.ReverseAddress = inbound.ReverseAddress
+	oldInbound.ReverseHost = inbound.ReverseHost
+	oldInbound.ReverseSni = inbound.ReverseSni
+	oldInbound.Worker = inbound.Worker
+	oldInbound.WorkerAddress = inbound.WorkerAddress
+	oldInbound.WorkerHost = inbound.WorkerHost
+	oldInbound.WorkerSni = inbound.WorkerSni
 
 	db := database.GetDB()
 	return db.Save(oldInbound).Error

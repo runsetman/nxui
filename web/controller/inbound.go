@@ -57,9 +57,9 @@ func (a *InboundController) getInbounds(c *gin.Context) {
 		return
 	}
 
-	// for _, inbound := range inbounds {
-	// 	fmt.Println(inbound)
-	// }
+	for _, inbound := range inbounds {
+		fmt.Println(inbound)
+	}
 
 	jsonObj(c, inbounds, nil)
 }
@@ -139,6 +139,7 @@ func (a *InboundController) updateInbound(c *gin.Context) {
 		jsonMsg(c, "修改", err)
 		return
 	}
+
 	err = a.inboundService.UpdateInbound(inbound)
 	jsonMsg(c, "修改", err)
 	if err == nil {

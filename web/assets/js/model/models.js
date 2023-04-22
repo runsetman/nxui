@@ -48,6 +48,10 @@ class DBInbound {
         this.reverseAddress = ""
         this.reverseHost = ""
         this.reverseSni = ""
+        this.worker = false;
+        this.workerAddress = ""
+        this.workerHost = ""
+        this.workerSni = ""
 
         if (data == null) {
             return;
@@ -140,7 +144,11 @@ class DBInbound {
             reverseHttps: this.reverseHttps,
             reverseAddress: this.reverseAddress,
             reverseHost: this.reverseHost,
-            reverseSni: this.reverseSni
+            reverseSni: this.reverseSni,
+            worker: this.worker,
+            workerAddress: this.workerAddress,
+            workerHost: this.workerHost,
+            workerSni: this.workerSni
         };
         return Inbound.fromJson(config);
     }
